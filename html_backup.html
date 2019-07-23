@@ -2,8 +2,6 @@
 <html lang="en">
 
   <head>
-    <link rel="shortcut icon" type="image/png" href="qr-code.png"/>
-
     <style type="text/css">
       .form-group {
   position: relative;
@@ -24,13 +22,7 @@
   transform: translate3d(0, -100%, 0);
   opacity: 1;
 }
-.checkbox {
-  margin-left: 20%;
-}
-/*#c1{
-    margin-left: 100%;
 
-}*/
     </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -51,7 +43,7 @@
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript" src="qrcode.js"></script>
 
-    <title>My QiFi </title>
+    <title>Hello, world!</title>
   </head>
   <body>
     
@@ -60,24 +52,15 @@
     <div class="col-md-6 mx-auto">
       <div class="form-group">
         <input type="text" id="name" class="form-control" required>
-        <label class="form-control-placeholder" for="name">SSID</label>
-      </div><br>
-<form class="form-inline">
- 
-  <div class="form-group">
-                 <select name="circle_1" id="c1" class="form-control circle-select">
-                    <option value="WPA">WPA|WPA2</option>
-                    <option value="WEP">WEP</option>
-                 </select>
-              </div>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" id="hidden"> &nbsp;&nbsp;Hidden SSID 
-    </label>
-  </div>
- 
-</form> <br><br>
-
+        <label class="form-control-placeholder" for="name">SSID(WPA2|WPA)</label>
+      </div>
+       <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="hidden">
+  <label class="form-check-label" for="hidden">
+Hidden SSID
+  </label>
+  
+</div><br>
       <div class="form-group">
         <input type="password" id="password" class="form-control" required>
         <label class="form-control-placeholder" for="password">PASSWORD</label>
@@ -94,11 +77,8 @@
 	function makeCode () {		
 	var elText = document.getElementById("name");
 	var elText1 = document.getElementById("password");
-	var type=document.getElementById("c1");
-  var hidden=document.getElementById("hidden");
-
-	var l='WIFI:S:'+ elText.value+';T:'+type.value+';P:'+ elText1.value+';H:'+String(hidden.checked)+';;'
-
+	var type;
+	var l='WIFI:S:'+ elText.value+';T:WPA;P:'+ elText1.value+';;'
 	qrcode.makeCode(l);
 }
 
@@ -123,23 +103,6 @@ $("#password").
 			makeCode();
 		}
 	});
-
-
-$('#hidden').change(function() {
-       
-  makeCode();
-
-    });
-
-
-
-$('#c1').change(function() {
-        
-  makeCode();
-
-    });
-
-
 </script>
 
   </body>
