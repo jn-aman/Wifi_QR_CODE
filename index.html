@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <style type="text/css">
+      .form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-control-placeholder {
+  position: absolute;
+  top: 0;
+  padding: 7px 0 0 13px;
+  transition: all 200ms;
+  opacity: 0.5;
+}
+
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+  font-size: 75%;
+  transform: translate3d(0, -100%, 0);
+  opacity: 1;
+}
+
+    </style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="qrcode.js"></script>
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="form-group">
+        <input type="text" id="name" class="form-control" required>
+        <label class="form-control-placeholder" for="name">SSID(WPA2|WPA)</label>
+      </div><br>
+      <div class="form-group">
+        <input type="password" id="password" class="form-control" required>
+        <label class="form-control-placeholder" for="password">PASSWORD</label>
+      </div>
+    </div>
+  </div>
+</div>
+<center><div id="qrcode"></div></center>
+<script type="text/javascript">
+	var qrcode= new QRCode(document.getElementById("qrcode"), "Aman Jain");
+
+	var l="WIFI:S:White_Knight;T:WPA;P:jain.me1835;;"
+
+	function makeCode () {		
+	var elText = document.getElementById("name");
+	var elText1 = document.getElementById("password");
+	
+	var l='WIFI:S:'+ elText.value+';T:WPA;P:'+ elText1.value+';;'
+	qrcode.makeCode(l);
+}
+
+makeCode();
+
+$("#name").
+	on("blur", function () {
+		makeCode();
+	}).
+	on("keydown", function (e) {
+		if (e.keyCode == 13) {
+			makeCode();
+		}
+	});
+
+$("#password").
+	on("blur", function () {
+		makeCode();
+	}).
+	on("keydown", function (e) {
+		if (e.keyCode == 13) {
+			makeCode();
+		}
+	});
+</script>
+
+  </body>
+
+</html>
